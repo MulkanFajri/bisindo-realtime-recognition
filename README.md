@@ -2,12 +2,16 @@
 
 # 🤟 BISINDO Realtime Recognition
 
-### Pengenalan Bahasa Isyarat Indonesia (BISINDO) Secara Realtime Menggunakan Machine Learning
+### Pengenalan Bahasa Isyarat Indonesia (BISINDO) Secara Realtime Menggunakan Machine Learning (MLP & Random Forest)
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Flask](https://img.shields.io/badge/Flask-WebApp-green)
 ![MediaPipe](https://img.shields.io/badge/MediaPipe-Hands-orange)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-MLP%20%7C%20RandomForest-red)
+
+<img src="https://img.shields.io/badge/Akurasi%20Huruf-97.9%25-success">
+<img src="https://img.shields.io/badge/Akurasi%20Kata-98%25-success">
+<img src="https://img.shields.io/badge/Kelas-41-blue">
 
 </div>
 
@@ -17,9 +21,9 @@
 
 Proyek ini merupakan sistem pengenalan Bahasa Isyarat Indonesia (BISINDO) secara realtime menggunakan teknologi Computer Vision dan Machine Learning.
 
-Sistem memanfaatkan **MediaPipe Hands** untuk mendeteksi posisi tangan, kemudian melakukan ekstraksi landmark dan mengklasifikasikan gesture menggunakan model Machine Learning.
+Sistem memanfaatkan MediaPipe Hands untuk mendeteksi posisi tangan, kemudian melakukan ekstraksi landmark dan mengklasifikasikan gesture menggunakan model Machine Learning.
 
-### Fitur Utama
+### ✨ Fitur Utama
 
 ✅ Pengenalan Huruf A-Z
 
@@ -53,17 +57,17 @@ Sistem memanfaatkan **MediaPipe Hands** untuk mendeteksi posisi tangan, kemudian
 
 ## ⚙️ Teknologi yang Digunakan
 
-| Teknologi | Fungsi |
-|------------|----------|
-| Python | Bahasa Pemrograman |
-| Flask | Backend Web |
-| OpenCV | Pengolahan Citra |
-| MediaPipe Hands | Deteksi Landmark Tangan |
-| NumPy | Operasi Numerik |
-| Pandas | Pengolahan Dataset |
-| Scikit-Learn | Machine Learning |
-| MLP | Klasifikasi Huruf & Angka |
-| Random Forest | Klasifikasi Kata |
+| Teknologi       | Fungsi                    |
+| --------------- | ------------------------- |
+| Python          | Bahasa Pemrograman        |
+| Flask           | Backend Web               |
+| OpenCV          | Pengolahan Citra          |
+| MediaPipe Hands | Deteksi Landmark Tangan   |
+| NumPy           | Operasi Numerik           |
+| Pandas          | Pengolahan Dataset        |
+| Scikit-Learn    | Machine Learning          |
+| MLP             | Klasifikasi Huruf & Angka |
+| Random Forest   | Klasifikasi Kata          |
 
 ---
 
@@ -101,42 +105,43 @@ Hasil Prediksi Realtime
 
 ## 📂 Dataset
 
-### Huruf dan Angka
+Dataset yang digunakan pada penelitian ini berasal dari beberapa sumber.
 
-Dataset huruf dan angka diperoleh dari Kaggle kemudian diproses menggunakan MediaPipe Hands untuk menghasilkan landmark tangan.
+### 🔤 Dataset Huruf BISINDO
 
-Jumlah kelas:
+Sumber:
 
-- 26 Huruf (A-Z)
-- 10 Angka (0-9)
+https://www.kaggle.com/datasets/achmadnoer/alfabet-bisindo
 
-Total:
-
-```text
-36 Kelas
-```
+Digunakan sebagai dataset huruf A-Z sebelum dilakukan ekstraksi landmark menggunakan MediaPipe Hands.
 
 ---
 
-### Kata BISINDO
+### 🔢 Dataset Angka BISINDO
 
-Dataset kata dikumpulkan secara mandiri menggunakan webcam.
+Sumber:
 
-Kelas yang digunakan:
+https://data.mendeley.com/datasets/j4y5w2c8w9/1
 
-```text
-Mendengar
-Tersenyum
-Ragu
-Damai
-Semoga Beruntung
-```
+Digunakan sebagai dataset angka 0-9 untuk proses pelatihan model MLP.
 
-Masing-masing kelas terdiri dari sekitar:
+---
 
-```text
-100 Gambar
-```
+### 🤟 Dataset Kata BISINDO
+
+Sumber:
+
+https://www.kaggle.com/datasets/mulkanfajri/indonesian-sign-language-bisindo-word-dataset
+
+Dataset ini dikumpulkan secara mandiri menggunakan webcam dan terdiri dari 5 kelas:
+
+* Mendengar
+* Tersenyum
+* Ragu
+* Damai
+* Semoga Beruntung
+
+Masing-masing kelas berisi sekitar 100 gambar.
 
 ---
 
@@ -144,31 +149,21 @@ Masing-masing kelas terdiri dari sekitar:
 
 MediaPipe Hands menghasilkan:
 
-```text
-21 Landmark
-```
+* 21 Landmark Tangan
+* Koordinat x
+* Koordinat y
+* Koordinat z
 
-Setiap landmark memiliki:
-
-```text
-x
-y
-z
-```
-
-Sehingga:
+Perhitungan fitur:
 
 ```text
 21 × 3 = 63 fitur
-```
-
-Karena sistem mendukung dua tangan:
-
-```text
 63 + 63 = 126 fitur
 ```
 
-Landmark tersebut disimpan ke file CSV sebelum proses training dilakukan.
+Karena sistem mendukung dua tangan maka total fitur yang digunakan adalah 126 fitur.
+
+Landmark kemudian disimpan ke dalam file CSV sebelum dilakukan proses training model.
 
 ---
 
@@ -190,10 +185,10 @@ Akurasi:
 
 Alasan penggunaan:
 
-- Cepat
-- Ringan
-- Cocok untuk data landmark
-- Akurasi tinggi
+* Cepat
+* Ringan
+* Cocok untuk data landmark
+* Akurasi tinggi
 
 ---
 
@@ -213,9 +208,9 @@ Akurasi:
 
 Alasan penggunaan:
 
-- Stabil
-- Tidak mudah overfitting
-- Cocok untuk dataset ukuran menengah
+* Stabil
+* Tidak mudah overfitting
+* Cocok untuk dataset ukuran menengah
 
 ---
 
@@ -282,10 +277,10 @@ http://127.0.0.1:5000
 
 ## 📈 Hasil Pengujian
 
-| Model | Akurasi |
-|---------|---------|
-| MLP (Huruf & Angka) | 97.9% |
-| Random Forest (Kata) | 98% |
+| Model                | Akurasi |
+| -------------------- | ------- |
+| MLP (Huruf & Angka)  | 97.9%   |
+| Random Forest (Kata) | 98%     |
 
 ---
 
@@ -293,7 +288,7 @@ http://127.0.0.1:5000
 
 **Mulkan Fajri**
 
-Teknik Informatika
+Program Studi Teknik Informatika
 
 Politeknik Negeri Lhokseumawe
 
@@ -301,6 +296,6 @@ Politeknik Negeri Lhokseumawe
 
 <div align="center">
 
-### ⭐ Jika proyek ini bermanfaat, berikan Star pada repository ini.
+⭐ Jika proyek ini bermanfaat, berikan Star pada repository ini.
 
 </div>
