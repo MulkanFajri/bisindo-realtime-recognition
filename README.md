@@ -1,149 +1,227 @@
-Pengenalan Bahasa Isyarat Indonesia (BISINDO) Secara Realtime Menggunakan Machine Learning
-Deskripsi
+<div align="center">
+
+# 🤟 BISINDO Realtime Recognition
+
+### Pengenalan Bahasa Isyarat Indonesia (BISINDO) Secara Realtime Menggunakan Machine Learning
+
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Flask](https://img.shields.io/badge/Flask-WebApp-green)
+![MediaPipe](https://img.shields.io/badge/MediaPipe-Hands-orange)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-MLP%20%7C%20RandomForest-red)
+
+</div>
+
+---
+
+## 📖 Tentang Proyek
 
 Proyek ini merupakan sistem pengenalan Bahasa Isyarat Indonesia (BISINDO) secara realtime menggunakan teknologi Computer Vision dan Machine Learning.
 
-Sistem mampu mengenali:
+Sistem memanfaatkan **MediaPipe Hands** untuk mendeteksi posisi tangan, kemudian melakukan ekstraksi landmark dan mengklasifikasikan gesture menggunakan model Machine Learning.
 
-Huruf A sampai Z
-Angka 0 sampai 9
-Kata BISINDO:
-Mendengar
-Tersenyum
-Ragu
-Damai
-Semoga Beruntung
+### Fitur Utama
 
-Proyek dibangun menggunakan MediaPipe Hands untuk ekstraksi landmark tangan, MLP (Multi Layer Perceptron) untuk klasifikasi huruf dan angka, serta Random Forest untuk klasifikasi kata BISINDO.
+✅ Pengenalan Huruf A-Z
 
-Teknologi yang Digunakan
-Python
-Flask
-OpenCV
+✅ Pengenalan Angka 0-9
+
+✅ Pengenalan Kata BISINDO
+
+✅ Deteksi Landmark Tangan Realtime
+
+✅ Website Interaktif Berbasis Flask
+
+✅ Menampilkan Confidence Prediksi
+
+---
+
+## 🖼️ Tampilan Sistem
+
+### Halaman Utama
+
+![Home](screenshots/home.png)
+
+### Deteksi Huruf dan Angka
+
+![Huruf](screenshots/huruf.png)
+
+### Deteksi Kata BISINDO
+
+![Kata](screenshots/kata.png)
+
+---
+
+## ⚙️ Teknologi yang Digunakan
+
+| Teknologi | Fungsi |
+|------------|----------|
+| Python | Bahasa Pemrograman |
+| Flask | Backend Web |
+| OpenCV | Pengolahan Citra |
+| MediaPipe Hands | Deteksi Landmark Tangan |
+| NumPy | Operasi Numerik |
+| Pandas | Pengolahan Dataset |
+| Scikit-Learn | Machine Learning |
+| MLP | Klasifikasi Huruf & Angka |
+| Random Forest | Klasifikasi Kata |
+
+---
+
+## 🏗️ Arsitektur Sistem
+
+```text
+Webcam
+   │
+   ▼
 MediaPipe Hands
-NumPy
-Pandas
-Scikit-Learn
-MLP Classifier
-Random Forest
-Arsitektur Sistem
-
-Dataset Gambar
-
-↓
-
-MediaPipe Hands
-
-↓
-
-Ekstraksi Landmark Tangan
-
-↓
-
+   │
+   ▼
+Ekstraksi Landmark
+   │
+   ▼
 126 Fitur Landmark
+   │
+   ▼
+Machine Learning
+   │
+   ├── MLP
+   │     └── Huruf & Angka
+   │
+   └── Random Forest
+         └── Kata BISINDO
+   │
+   ▼
+Flask Web Application
+   │
+   ▼
+Hasil Prediksi Realtime
+```
 
-↓
+---
 
-Training Model
+## 📂 Dataset
 
-↓
+### Huruf dan Angka
 
-Model (.pkl)
-
-↓
-
-Flask Backend
-
-↓
-
-Website Realtime
-
-↓
-
-Prediksi BISINDO
-
-Dataset
-Huruf dan Angka
-
-Dataset huruf dan angka diperoleh dari Kaggle dan kemudian diproses menggunakan MediaPipe Hands untuk menghasilkan fitur landmark.
+Dataset huruf dan angka diperoleh dari Kaggle kemudian diproses menggunakan MediaPipe Hands untuk menghasilkan landmark tangan.
 
 Jumlah kelas:
 
-26 Huruf (A-Z)
-10 Angka (0-9)
+- 26 Huruf (A-Z)
+- 10 Angka (0-9)
 
 Total:
 
+```text
 36 Kelas
+```
 
-Kata BISINDO
+---
+
+### Kata BISINDO
 
 Dataset kata dikumpulkan secara mandiri menggunakan webcam.
 
 Kelas yang digunakan:
 
+```text
 Mendengar
 Tersenyum
 Ragu
 Damai
 Semoga Beruntung
+```
 
-Setiap kelas terdiri dari sekitar 100 gambar.
+Masing-masing kelas terdiri dari sekitar:
 
-Ekstraksi Fitur
+```text
+100 Gambar
+```
+
+---
+
+## 📊 Ekstraksi Fitur
 
 MediaPipe Hands menghasilkan:
 
-21 landmark tangan
-Setiap landmark memiliki koordinat:
+```text
+21 Landmark
+```
+
+Setiap landmark memiliki:
+
+```text
 x
 y
 z
+```
 
-Perhitungan fitur:
+Sehingga:
 
-21 landmark × 3 koordinat = 63 fitur
+```text
+21 × 3 = 63 fitur
+```
 
-Karena mendukung dua tangan:
+Karena sistem mendukung dua tangan:
 
+```text
 63 + 63 = 126 fitur
+```
 
-Seluruh fitur kemudian disimpan dalam file CSV sebelum dilakukan proses training.
+Landmark tersebut disimpan ke file CSV sebelum proses training dilakukan.
 
-Model Machine Learning
-Huruf dan Angka
+---
+
+## 🧠 Model Machine Learning
+
+### Huruf dan Angka
 
 Metode:
 
+```text
 MLP (Multi Layer Perceptron)
+```
+
+Akurasi:
+
+```text
+97.9%
+```
 
 Alasan penggunaan:
 
-Cocok untuk data numerik hasil landmark
-Proses training cepat
-Akurasi tinggi
+- Cepat
+- Ringan
+- Cocok untuk data landmark
+- Akurasi tinggi
 
-Hasil pengujian:
+---
 
-Accuracy = 97.9%
-
-Kata BISINDO
+### Kata BISINDO
 
 Metode:
 
+```text
 Random Forest Classifier
+```
+
+Akurasi:
+
+```text
+98%
+```
 
 Alasan penggunaan:
 
-Stabil untuk dataset berukuran kecil hingga menengah
-Mudah diimplementasikan
-Akurasi tinggi
+- Stabil
+- Tidak mudah overfitting
+- Cocok untuk dataset ukuran menengah
 
-Hasil pengujian:
+---
 
-Accuracy = 98%
+## 📁 Struktur Folder
 
-Struktur Folder
+```text
 PROJECT_BISINDO
 
 ├── models
@@ -164,32 +242,65 @@ PROJECT_BISINDO
 │
 ├── requirements.txt
 └── README.md
+```
 
-Cara Menjalankan
-1. Clone Repository
+---
+
+## 🚀 Cara Menjalankan
+
+Clone repository:
+
+```bash
 git clone https://github.com/MulkanFajri/bisindo-realtime-recognition.git
-2. Install Library
+```
+
+Masuk ke folder project:
+
+```bash
+cd bisindo-realtime-recognition
+```
+
+Install library:
+
+```bash
 pip install -r requirements.txt
-3. Jalankan Program
+```
+
+Jalankan aplikasi:
+
+```bash
 python app.py
-4. Buka Browser
+```
+
+Buka browser:
+
+```text
 http://127.0.0.1:5000
-Fitur Sistem
-Deteksi tangan secara realtime
-Visualisasi landmark MediaPipe
-Prediksi huruf A-Z
-Prediksi angka 0-9
-Prediksi kata BISINDO
-Menampilkan confidence prediksi
-Pergantian mode huruf dan kata
-Pengembang
+```
 
-Mulkan Fajri
+---
 
-Program Studi Teknik Informatika
+## 📈 Hasil Pengujian
+
+| Model | Akurasi |
+|---------|---------|
+| MLP (Huruf & Angka) | 97.9% |
+| Random Forest (Kata) | 98% |
+
+---
+
+## 👨‍💻 Pengembang
+
+**Mulkan Fajri**
+
+Teknik Informatika
 
 Politeknik Negeri Lhokseumawe
 
-Lisensi
+---
 
-Proyek ini dibuat untuk keperluan penelitian dan tugas akhir akademik.
+<div align="center">
+
+### ⭐ Jika proyek ini bermanfaat, berikan Star pada repository ini.
+
+</div>
