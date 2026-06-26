@@ -1,0 +1,11 @@
+venv_mlp/
+__pycache__/
+
+dataset_final/
+dataset_kata/
+
+bisindo_landmarks.csv
+kata_landmarks.csv
+
+*.pyc
+*.csv
